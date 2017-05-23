@@ -219,6 +219,8 @@ class Logger
     @logdev.write(msg) if @logdev
   end
 
+  alias write <<
+
   #
   # Log a +DEBUG+ message.
   #
