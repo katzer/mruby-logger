@@ -6,7 +6,7 @@ A simple but sophisticated logging utility that you can use to output messages.
 ```ruby
 logger = Logger.new 'logs/development.log'
 
-logger.formatter = -> (severity, datetime, progname, msg)
+logger.formatter = -> (severity, datetime, progname, msg) do
   "[#{severity[0]}] #{datetime}: #{msg}\n"
 end
 
