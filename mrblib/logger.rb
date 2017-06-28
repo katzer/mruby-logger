@@ -339,7 +339,7 @@ class Logger
     private
 
     def format_datetime(t)
-      format (@datetime_format || '%d-%d-%dT%d:%d:%d.%6d '), t.year, t.mon, t.day, t.hour, t.min, t.sec, t.usec
+      format (@datetime_format || '%04d-%02d-%02dT%02d:%02d:%02d.%06d '), t.year, t.mon, t.day, t.hour, t.min, t.sec, t.usec
     rescue
       t.asctime
     end

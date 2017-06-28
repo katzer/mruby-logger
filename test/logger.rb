@@ -114,10 +114,19 @@ assert 'Logger#add', 'severity+message' do
   logdev = StringIO.new
   logger = Logger.new(logdev)
 
-  logger.add INFO, 'message'
+  begin
+    def Time.now
+      return Time.mktime(123, 1, 2, 3, 4, 5, 67890)
+    end
+    logger.add INFO, 'message'
+  ensure
+    def Time.now
+      return new
+    end
+  end
 
-  assert_equal 'I, [', logdev.to_s[0..3]
-  assert_include logdev.to_s, ']  INFO -- : message'
+  assert_equal "I, [0123-01-02T03:04:05.067890 #0]  INFO -- : message\n",
+               logdev.to_s
 end
 
 assert 'Logger#add', 'severity+proc' do
