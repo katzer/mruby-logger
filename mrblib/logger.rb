@@ -323,7 +323,7 @@ class Logger
 
   # Default formatter for log messages.
   class Formatter
-    Format = "%s, [%s#%d] %5s -- %s: %s\n".freeze
+    Format = "%s, [%s #%d] %5s -- %s: %s\n".freeze
 
     attr_accessor :datetime_format
 
@@ -339,7 +339,8 @@ class Logger
     private
 
     def format_datetime(t)
-      format (@datetime_format || '%04d-%02d-%02dT%02d:%02d:%02d.%06d '), t.year, t.mon, t.day, t.hour, t.min, t.sec, t.usec
+      format (@datetime_format || '%04d-%02d-%02dT%02d:%02d:%02d.%06d'), \
+             t.year, t.mon, t.day, t.hour, t.min, t.sec, t.usec
     rescue
       t.asctime
     end
