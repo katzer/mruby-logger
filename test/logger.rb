@@ -116,17 +116,17 @@ assert 'Logger#add', 'severity+message' do
 
   begin
     def Time.now
-      return Time.mktime(123, 1, 2, 3, 4, 5, 67890)
+      Time.mktime(2018, 1, 2, 3, 4, 5, 67_890)
     end
     logger.add INFO, 'message'
   ensure
     def Time.now
-      return new
+      new
     end
   end
 
-  assert_equal "I, [0123-01-02T03:04:05.067890 #0]  INFO -- : message\n",
-               logdev.to_s
+  assert_include logdev.to_s, 'I, [2018-01-02T03:04:05.067890'
+  assert_include logdev.to_s, ']  INFO -- : message'
 end
 
 assert 'Logger#add', 'severity+proc' do
