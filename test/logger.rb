@@ -220,9 +220,9 @@ assert 'Logger#unknown' do
 end
 
 assert 'Logger.log', 'path' do
-  file = 'log.txt'
-
   begin
+    file = 'log.txt'
+
     File.delete(file) if File.exist? file
 
     logger = Logger.new file
@@ -236,6 +236,7 @@ assert 'Logger.log', 'path' do
     logger.reopen
     assert_nothing_raised { logger << 'message' }
   ensure
+    logger.close      if logger
     File.delete(file) if File.exist? file
   end
 end
