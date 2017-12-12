@@ -28,6 +28,4 @@ MRuby::Gem::Specification.new('mruby-logger') do |spec|
   spec.add_dependency 'mruby-sprintf', core: 'mruby-sprintf'
   spec.add_dependency 'mruby-time',    core: 'mruby-time'
   spec.add_dependency 'mruby-io',      mgem: 'mruby-io'
-
-  spec.add_test_dependency 'mruby-print', core: 'mruby-print'
 end

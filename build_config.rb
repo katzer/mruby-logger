@@ -28,5 +28,6 @@ MRuby::Build.new do |conf|
     conf.enable_test
   end
 
+  conf.gem core: 'mruby-print'
   conf.gem __dir__
 end
