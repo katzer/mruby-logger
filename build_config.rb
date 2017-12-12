@@ -23,8 +23,10 @@
 MRuby::Build.new do |conf|
   toolchain ENV.fetch('TOOLCHAIN', :gcc)
 
-  conf.enable_debug
-  conf.enable_test
+  if ARGV.include? 'test'
+    conf.enable_debug
+    conf.enable_test
+  end
 
-  conf.gem File.expand_path(File.dirname(__FILE__))
+  conf.gem __dir__
 end

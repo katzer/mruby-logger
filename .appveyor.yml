@@ -27,8 +27,7 @@ environment:
     COMPILER: C:\MinGW
     TOOLCHAIN: gcc
   matrix:
-  # - MRUBY_VERSION: 1.2.0
-  # - MRUBY_VERSION: 1.3.0
+  - MRUBY_VERSION: 1.3.0
   - MRUBY_VERSION: head
 
 matrix:
@@ -36,13 +35,8 @@ matrix:
   - MRUBY_VERSION: head
 
 init:
-# Disable popups as they hang the build as there is nobody to click OK
 - git config --global core.autocrlf input
-# Disable of system hard error popup
-# See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
 - reg add "HKLM\SYSTEM\CurrentControlSet\Control\Windows" /f /v ErrorMode /d 2
-# Disable popups on program failure
-# See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
 - reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v DontShowUI /d 1
 - SET PATH=C:\Windows\system32;C:\Windows;C:\Windows\system32\Wbem;C:\Program Files\Git\cmd;%PATH%
 - SET PATH=%COMPILER%\bin;C:\Ruby24-x64\bin;%PATH%;C:\cygwin\bin;
@@ -53,10 +47,5 @@ build_script:
 - rake compile
 
 test_script:
-- DEL /F /Q mruby\build\mrbgems\mruby-io\*_test.*
 - DEL /F /Q mruby\build\mrbgems\mruby-io\test
-- DEL /F /Q mruby\build\mrbgems\mruby-io\src\*_test.*
-- DEL /F /Q mruby\build\host\mrbgems\mruby-io\*_test.*
-- DEL /F /Q mruby\build\host\mrbgems\mruby-io\test
-- DEL /F /Q mruby\build\host\mrbgems\mruby-io\src\*_test.*
 - rake test
