@@ -25,7 +25,7 @@ MRuby::Gem::Specification.new('mruby-logger') do |spec|
   spec.authors = 'Sebastian Katzer'
   spec.summary = 'Logging utility'
 
-  spec.add_dependency 'mruby-sprintf', core: 'mruby-sprintf'
-  spec.add_dependency 'mruby-time',    core: 'mruby-time'
-  spec.add_dependency 'mruby-io',      mgem: 'mruby-io'
+  spec.add_dependency 'mruby-sprintf'
+  spec.add_dependency 'mruby-time'
+  spec.add_dependency 'mruby-io'
 end
