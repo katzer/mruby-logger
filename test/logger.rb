@@ -231,7 +231,7 @@ assert 'Logger.log', 'path' do
     assert_equal IO.read(file), 'message'
 
     logger.close
-    assert_raise(RuntimeError) { logger << 'message' }
+    assert_raise(IOError, RuntimeError) { logger << 'message' }
 
     logger.reopen
     assert_nothing_raised { logger << 'message' }
