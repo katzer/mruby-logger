@@ -323,7 +323,7 @@ class Logger
 
   # Default formatter for log messages.
   class Formatter
-    Format = "%s, [%s #%d] %5s -- %s: %s\n".freeze
+    FORMAT = "%s, [%s #%d] %5s -- %s: %s\n".freeze
 
     attr_accessor :datetime_format
 
@@ -333,15 +333,15 @@ class Logger
 
     def call(sev, time, prog, msg)
       format \
-        Format, sev[0], format_datetime(time), $$ || 0, sev, prog, msg2str(msg)
+        FORMAT, sev[0], format_datetime(time), $$ || 0, sev, prog, msg2str(msg)
     end
 
     private
 
     def format_datetime(t)
-      format (@datetime_format || '%04d-%02d-%02dT%02d:%02d:%02d.%06d'), \
-             t.year, t.mon, t.day, t.hour, t.min, t.sec, t.usec
-    rescue
+      format((@datetime_format || '%04d-%02d-%02dT%02d:%02d:%02d.%06d'), \
+             t.year, t.mon, t.day, t.hour, t.min, t.sec, t.usec)
+    rescue StandardError
       t.asctime
     end
 
@@ -373,7 +373,7 @@ class Logger
 
     def close
       @dev.close
-    rescue
+    rescue StandardError
       nil
     end
 
@@ -406,13 +406,13 @@ class Logger
     end
 
     def open_logfile(filename)
-      open(filename, 'a+')
-    rescue
+      File.open(filename, 'a+')
+    rescue StandardError
       create_logfile(filename)
     end
 
     def create_logfile(filename)
-      logdev = open(filename, 'a+')
+      logdev = File.open(filename, 'a+')
       logdev.flock(File::LOCK_EX)
       logdev.sync = true
       add_log_header(logdev)
