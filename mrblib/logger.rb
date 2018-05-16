@@ -406,8 +406,6 @@ class Logger
     end
 
     def open_logfile(filename)
-      File.open(filename, 'a+')
-    rescue StandardError
       create_logfile(filename)
     end
 
@@ -423,7 +421,7 @@ class Logger
     def add_log_header(file)
       return unless File.zero? file
       file.write(
-        "# Logfile created on %s by %s\n" % Time.now.to_s, Logger::ProgName
+        "# Logfile created on %s by %s\n" % [Time.now, Logger::ProgName]
       )
     end
   end
