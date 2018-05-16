@@ -20,12 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require "#{MRUBY_ROOT}/lib/mruby/source"
+
 MRuby::Gem::Specification.new('mruby-logger') do |spec|
   spec.license = 'MIT'
   spec.authors = 'Sebastian Katzer'
   spec.summary = 'Logging utility'
 
-  spec.add_dependency 'mruby-sprintf'
-  spec.add_dependency 'mruby-time'
-  spec.add_dependency 'mruby-io'
+  spec.add_dependency 'mruby-sprintf', core: 'mruby-sprintf'
+  spec.add_dependency 'mruby-time',    core: 'mruby-time'
+
+  if MRuby::Source::MRUBY_VERSION >= '1.4.0'
+    spec.add_test_dependency 'mruby-io', core: 'mruby-io'
+  else
+    spec.add_test_dependency 'mruby-io', mgem: 'mruby-io'
+  end
 end
