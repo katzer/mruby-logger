@@ -227,14 +227,17 @@ assert 'Logger.log', 'path' do
 
     logger = Logger.new file
 
+    assert_false File.zero?(file)
+
     logger << 'message'
-    assert_equal IO.read(file), 'message'
+    assert_equal IO.read(file).split("\n")[1], 'message'
 
     logger.close
     assert_raise(IOError, RuntimeError) { logger << 'message' }
 
     logger.reopen
     assert_nothing_raised { logger << 'message' }
+    assert_equal IO.read(file).split("\n")[1], 'messagemessage'
   ensure
     logger.close      if logger
     File.delete(file) if File.exist? file
