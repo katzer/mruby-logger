@@ -421,7 +421,7 @@ class Logger
     end
 
     def add_log_header(file)
-      return if File.zero? file
+      return unless File.zero? file
       file.write(
         "# Logfile created on %s by %s\n" % Time.now.to_s, Logger::ProgName
       )
