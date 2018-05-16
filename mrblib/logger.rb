@@ -130,12 +130,12 @@ class Logger
   # Create an instance.
   #
   def initialize(logdev, opts = {})
-    self.level           = opts[:level] || DEBUG
-    self.progname        = opts[:progname]
-    @default_formatter   = Formatter.new
-    self.datetime_format = opts[:datetime_format]
-    self.formatter       = formatter
-    @logdev              = logdev ? LogDevice.new(logdev) : nil
+    @level             = opts[:level] || DEBUG
+    @progname          = opts[:progname]
+    @default_formatter = Formatter.new
+    @datetime_format   = opts[:datetime_format]
+    @formatter         = opts[:formatter]
+    @logdev            = logdev ? LogDevice.new(logdev) : nil
   end
 
   #
