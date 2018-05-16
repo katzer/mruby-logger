@@ -41,7 +41,7 @@ class Logger
 
   include Severity
 
-  ProgName = "#{File.basename(__FILE__)}/1.2.7".freeze
+  ProgName = 'mruby-logger'.freeze
 
   # Logging severity threshold (e.g. <tt>Logger::INFO</tt>).
   attr_reader :level
