@@ -27,7 +27,7 @@ environment:
     COMPILER: C:\MinGW
     TOOLCHAIN: gcc
   matrix:
-  - MRUBY_VERSION: 1.4.0
+  - MRUBY_VERSION: stable
   - MRUBY_VERSION: head
 
 matrix:
@@ -36,8 +36,6 @@ matrix:
 
 init:
 - SET PATH=%COMPILER%\bin;C:\Ruby25-x64\bin;%PATH%;C:\cygwin64\bin
-- gcc --version
-- ruby --version
 
 build_script:
 - rake compile

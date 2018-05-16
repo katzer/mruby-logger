@@ -27,7 +27,7 @@ compiler:
 - clang
 
 env:
-- MRUBY_VERSION=1.4.0
+- MRUBY_VERSION=stable
 - MRUBY_VERSION=head
 
 matrix:
@@ -38,5 +38,4 @@ before_script:
 - export TOOLCHAIN=$CC
 
 script:
-- rake compile
-- rake test
+- rake compile test
