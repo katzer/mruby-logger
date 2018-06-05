@@ -411,15 +411,12 @@ class Logger
 
     def create_logfile(filename)
       logdev = File.open(filename, 'a+')
-      logdev.flock(File::LOCK_EX)
       logdev.sync = true
-      add_log_header(logdev)
-      logdev.flock(File::LOCK_UN)
+      add_log_header(logdev) if File.zero? logdev
       logdev
     end
 
     def add_log_header(file)
-      return unless File.zero? file
       file.write(
         "# Logfile created on %s by %s\n" % [Time.now, Logger::ProgName]
       )

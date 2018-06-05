@@ -221,14 +221,17 @@ end
 
 assert 'Logger.log', 'path' do
   begin
-    file = 'log.txt'
+    file = File.join(File.dirname(__FILE__), 'log.txt')
 
     File.delete(file) if File.exist? file
 
-    logger = Logger.new file
+    logger = Logger.new(file)
 
+    logger.close
+    assert_true  File.exist?(file)
     assert_false File.zero?(file)
 
+    logger.reopen
     logger << 'message'
     assert_equal IO.read(file).split("\n")[1], 'message'
 
