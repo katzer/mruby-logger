@@ -1,4 +1,4 @@
-# mruby-logger [![Build Status](https://travis-ci.com/katzer/mruby-logger.svg?branch=master)](https://travis-ci.com/katzer/mruby-logger) [![Build status](https://ci.appveyor.com/api/projects/status/ganeuyg2vi9e73gs/branch/master?svg=true)](https://ci.appveyor.com/project/katzer/mruby-logger/branch/master)
+# mruby-logger [![Build Status](https://travis-ci.com/katzer/mruby-logger.svg?branch=master)](https://travis-ci.com/katzer/mruby-logger)
 
 Implementation of the Ruby 2.4.1 Standard Library [Logger][logger].
 A simple but sophisticated logging utility that you can use to output messages.
